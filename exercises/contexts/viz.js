@@ -1,7 +1,7 @@
 var data = [
   {text: "hi", value: 10},
-  {text: "there", value: 30},
-  {text: "d3", value: 20}
+  {text: "there", value: 20},
+  {text: "d3", value: 15}
 ]
 
 render();
@@ -9,13 +9,27 @@ tick();
 
 function render() {
   // TODO select elements
-  d3.select("#bind-to-me");
-  //
-  // TODO handle existing elements
-  //
+    const update = d3.select("#bind-to-me")
+	  .selectAll("li")
+	  .data(data);
+    
+    // TODO handle existing elements
+
+    // TODO update + enter
+    
   // TODO handle new elements
-  //
-  // TODO elements that need to leave
+    const enter = update
+	  .enter()
+	  .append("li")
+
+    // update + enter
+    update
+	.text(d => d.text)
+	.style("font-size", d => d.value + "px")
+    
+    // TODO elements that need to leave
+    update.exit()
+	.remove()
 }
 
 function tick() {
@@ -35,5 +49,5 @@ function tick() {
 
     render();
 
-  }, 1000);
+  }, 200);
 }

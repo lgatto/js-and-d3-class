@@ -7,7 +7,7 @@
 
 /* eslint no-undef:0 */
 
-export function greeter(/* TODO define parameters */) {
+export function greeter(person, greeting = "hi") {
   return `${greeting} ${person}`;
 };
 
@@ -31,7 +31,7 @@ export function greeter(/* TODO define parameters */) {
 
 // eslint no-unused-vars:0
 
-export function englishList(/* params */) {
+export function englishList(words, { oxford: oxfordComma = false } {}) {
   // TODO use destructuring to pull out values
   // TODO use destructuring to define defaults
 };

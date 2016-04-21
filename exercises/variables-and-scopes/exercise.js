@@ -1,18 +1,18 @@
 /* TODO in the below scenarios, give the value
- * of A returned from the function. e.g if you think
- * scenarioOne returns "apple", then
+ * of a returned from the function. e.g if you think
+ * scenarioone returns "apple", then
  *
- *   ANSWERS.scenarioOne = "apple";
+ *   answers.scenarioone = "apple";
  *
- * Think it through each time. Come up with a
- * reasoned argument for 'A' being a certain
+ * think it through each time. come up with a
+ * reasoned argument for 'a' being a certain
  * value in terms of:
  *
  * - order of execution
  * - function scope
  * - block scope
  *
- * Just guessing until it works won't help you learn it!
+ * just guessing until it works won't help you learn it!
  *
  * if you think the scenario returns nothing, or will
  * throw an error, return nothing (null/undefined or no return)
@@ -23,39 +23,39 @@
 // config for exercises
 /* eslint no-unused-vars:0 no-unreachable:0 */
 
-const ANSWERS = {};
+const answers = {};
 
-function scenarioOne() {
-  // hoisting zone: A: undefined
-  var A = 'scenario';
+function scenarioone() {
+  // hoisting zone: a: undefined
+  var a = 'scenario';
   inner();
 
-  return A;
+  return a;
 
   function inner() {
-    // innerScope: {}
-    A = 'inner';
+    // innerscope: {}
+    a = 'inner';
   }
 }
 
-ANSWERS.scenarioOne = 'inner';
+answers.scenarioone = 'inner';
 
-function scenarioTwo() {
+function scenariotwo() {
 
-  var A = 'out';
+  var a = 'out';
   inner();
 
-  // scope: {A: 'out'}
-  return A;
+  // scope: {a: 'out'}
+  return a;
 
   function inner() {
-    var A = 'inner';
+    var a = 'inner';
     // scope: {A: 'inner'}
   }
 
 }
 
-ANSWERS.scenarioTwo = 'TODO';
+ANSWERS.scenarioTwo = 'out';
 
 function scenarioThree() {
   var A = 'outer';
@@ -73,15 +73,15 @@ function scenarioThree() {
       A = 'helper';
     }
 
-    A = 'inner';
+    A = 'inner'; // never reached
   }
 
 }
 
-ANSWERS.scenarioThree = 'TODO';
+ANSWERS.scenarioThree = 'helper';
 
 function scenarioFour() {
-  const A = 'outer';
+  const A = 'outer'; // can't be changed
 
   {
     let A = 'inner';
@@ -91,14 +91,14 @@ function scenarioFour() {
 
 }
 
-ANSWERS.scenarioFour = 'TODO';
+ANSWERS.scenarioFour = 'outer';
 
 function scenarioFive() {
   let A = 'outer';
 
   {
     let A = 'inner';
-    return A;
+    return A; // return from function, not block
   }
 
   A = 'outer';
@@ -129,6 +129,7 @@ function scenarioSeven() {
 
   {
     for (B = 0; B < 10; B++) {
+      console.log(A);
       inner();
       if (B > 5) {
         A = B;
@@ -145,12 +146,13 @@ function scenarioSeven() {
   return A;
 
   function inner(A, B) {
+    // A and B undefined
     B = 100;
     A = 'inner';
   }
 }
 
-ANSWERS.scenarioSeven = 'TODO';
+ANSWERS.scenarioSeven = 6;
 
 
 

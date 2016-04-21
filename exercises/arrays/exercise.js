@@ -16,10 +16,24 @@
 
 export { dig };
 
-function dig(/* TODO define params */) {
-  // TODO implement with for ... of etc
+// reminder: looking up an object property dynamically 
+//
+// const prop = "hello";
+// const object = { hello: 1 };
+// console.log(object[prop]); //1
+
+function dig(object, ...props) {
+    for (const prop of props) {
+	if (object == null) {
+	    break;
+	}
+	object = object[prop];
+    }
+
+    return object;
 }
 
-function digReduce(/* TODO define params */) {
-  // TODO implement with a reduce
+function digReduce(object, ...props) {
+    return props.reduce((obj, prop) => obj == null ? null : obj[prop],
+		       object)
 }

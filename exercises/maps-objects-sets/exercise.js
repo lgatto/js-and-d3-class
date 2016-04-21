@@ -9,11 +9,21 @@
 //
 export function getCount(incoming) {
 
-  incoming((event) => {
+    const counts = new Map();
+    
+    // declare structure
+    incoming((event) => {
+	if (counts.get(event) == null) {
+	    counts.set(event, 0)
+	}
 
-    // TODO
-    return 0;
-  });
+	counts.set(event, counts.get(event) + 1);
+
+	console.log(event, counts.get(event));
+	
+	return counts.get(event);
+
+    });
 
 };
 
@@ -27,10 +37,10 @@ export function getCount(incoming) {
 //
 export function getIpSets(incoming) {
 
-  incoming((event, ip) => {
-
-    // TODO
-    return [];
-  });
+    incoming((event, ip) => {
+	console.log(event, ip)
+	// TODO
+	return [];
+    });
 };
 

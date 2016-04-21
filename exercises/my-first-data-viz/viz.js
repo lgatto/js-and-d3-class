@@ -12,18 +12,24 @@ var data = [
   { year: 2009,  poolDeaths: 102 , cageFilms: 4 },
 ];
 
+const colour = ["red", "green", "blue", "orange", "yellow"];
+
 
 // TODO select groups (.film), bind data
 
-// TODO configure the films .transform attribute
-  //  - each group's x is 80px to right of previous
-  //  - each group's y is (200 - (d.cageFilms * 20 + 20)) px
+const films = d3.selectAll(".film")
+      .data(data)
+      .attr("transform", (d, i) => {
+	  const low = 1999;
+	  return `translate(${50 + (d.year - low) * 80}, ${(200 - (d.cageFilms * 25 + 30))})`;
+      })
 
-  // end up with string like: translate(10px, 20px)
+films
+    .select("circle")
+    .attr("r", d => d.poolDeaths/2.5)
+    .style("fill", d => colour[d.cageFilms])
 
-// TODO make each circle's radius (poolDeaths / 4) pixels
-// CSS units always have a unit - visual unit, e.g em, ex, px, pt
-// SVG units in SVG attributes - unitless
 
-
-// TODO set each <text>'s content to d.year
+films
+    .select("text")
+    .text(d => d.year)

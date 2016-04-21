@@ -23,7 +23,11 @@ var hattersTreat = 'darjeeling in a conch-shell';
 
 // TODO export the Hatter as default!
 
+module.exports = exports = Hatter;
+
 // TODO export the hattersTreat as treat
+
+exports.treat = hattersTreat;
 
 /**
  * 2) learning to import with the March hare
@@ -31,7 +35,10 @@ var hattersTreat = 'darjeeling in a conch-shell';
 
 // TODO import the MarchHare
 
+var hare = require('./MarchHare.js');
+// or var MarchHare require("./MarchHare");
+
 // TODO rexport the MarchHare's default as MarchHare, and it's treat as MarchHareTreat
 
-
-
+exports.MarchHare = hare;
+exports.MarchHareTreat = hare.treat;
