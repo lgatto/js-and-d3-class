@@ -38,4 +38,4 @@ using js-2mode
 
 https://github.com/lgatto/js-and-d3-class
 
-
+See also https://github.com/lgatto/tgac-component-class

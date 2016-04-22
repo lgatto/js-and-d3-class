@@ -11,6 +11,23 @@
 //   .balance(n)
 //      returns balance
 
+export class BankAccount {
+    constructor(balance) {
+	this._balance = balance;
+    }
+
+    deposit(n) {
+	if (n + this._balance < 0)
+	    throw Error("OutOfFunds");
+	this._balance += n;
+    }
+
+    balance() {
+	return this._balance;
+    }
+    
+}
+
 // Exercise 2
 
 // TODO using class, sub-class BankAccount to create a BankAccountWithOverdraft
@@ -25,6 +42,18 @@
 
 // TODO create inheritance relation
 
+export class BankAccountWithOverdraft extends BankAccount {
+    constructor(balance, overdraft) {
+	super(balance);
+	this._overdraft = overdraft;
+    }
+
+    deposit(n) {
+	if (n + this._balance < -this._overdraft)
+	    throw Error("OutOfFunds");
+	this._balance += n;
+    }
+}
 
 
 // Exercise 3
