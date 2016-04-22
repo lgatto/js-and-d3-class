@@ -68,3 +68,15 @@ export class BankAccountWithOverdraft extends BankAccount {
 // TODO ensure BankAccountWithOverdraftViaPt.prototype is a BankAccount (prototypal inheritance)
 // TODO override deposit for our prototypal 'subclass'
 
+export function BankAccountWithOverdraftViaPt(balance, override) {
+    this._balance = balance;
+    this._overdraft = override;
+}
+
+BankAccountWithOverdraftViaPt.prototype = Object.create(BankAccount.prototype);
+
+BankAccountWithOverdraftViaPt.prototype.deposit = function(n) {
+    if (n + this._balance < -this._overdraft)
+	throw Error("OutOfFunds");
+    this._balance += n;
+}
