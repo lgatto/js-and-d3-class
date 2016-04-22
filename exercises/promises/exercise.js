@@ -18,8 +18,17 @@
 //
 export function formatUserOrError(userPromise, getAccount, formatHtml, formatError) {
 
+    // TODO thread userPromise through getAccount
+    const accountPromise = userPromise.then(getAccount);
+
+    // TODO combine promises for formatHtml
+    return Promise.all([userPromise, accountPromise])
+	.then(([user, account]) => {
+	    return formatHtml(user, account);
+	})
+	.catch((e) => formatError(e))
+
   // TODO return final promise
-  // TODO thread userPromise through getAccount
-  // TODO combine promises for formatHtml
+
   // TODO ensure all errors, from all sources, will end up at formatError
 }
